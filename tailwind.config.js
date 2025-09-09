@@ -6,6 +6,9 @@ module.exports = {
   theme: {
     extend: {
       // Default Tailwind colors will be used, no custom palette defined
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+      },
     },
   },
   plugins: [],

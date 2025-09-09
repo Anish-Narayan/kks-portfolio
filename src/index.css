@@ -22,4 +22,49 @@
 /* Ensure the root element takes full height */
 #root {
   height: 100vh;
+}/* In your index.css or App.css */
+.animated-gradient {
+  background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #4f46e5);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+body {
+  cursor: none; /* Hide the default system cursor */
+  background-color: #0A0A0A;
+  position: relative; /* Add this */
+  color: #E5E5E5; /* Set a default light text color */
+}
+
+
+.spotlight-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 1rem; /* same as rounded-2xl */
+  background: radial-gradient(
+    350px circle at var(--x) var(--y),
+    rgba(0, 255, 255, 0.15),
+    transparent 80%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.spotlight-card:hover::before {
+  opacity: 1;
 }
