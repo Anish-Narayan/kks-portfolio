@@ -6,7 +6,7 @@ import ProjectCard from '../components/ProjectCard';
 
 import { projectData } from '../data/projects';
 // The AnimatedText component can remain here or be moved to a shared components folder
-const AnimatedText = ({ text, el: Wrapper = 'p', className }) => {
+export const AnimatedText = ({ text, el: Wrapper = 'p', className }) => {
   const container = {
     hidden: { opacity: 0 },
     visible: (i = 1) => ({
