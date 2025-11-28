@@ -1,26 +1,52 @@
 import React from "react";
+import { Aperture, Layers, Sun } from "lucide-react";
 
-function PhotographyContent({ service }) {
+export default function PhotographyContent() {
   return (
-    <>
-      <h1 className="text-5xl font-bold mb-4">
-        <span className="mr-4">{service.icon}</span>
-        {service.title}
-      </h1>
-      <p className="text-lg leading-relaxed text-gray-300 mb-8">
-        {service.description}
+    <div className="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
+      
+      <p className="text-xl text-gray-200 font-light border-l-4 border-cyan-500 pl-6 italic">
+        "Photography is the pause button of life. We make sure that pause looks spectacular."
       </p>
-      {/* Example of a custom photo gallery */}
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-        <img src="https://via.placeholder.com/400" alt="placeholder 1" className="rounded-lg" />
-        <img src="https://via.placeholder.com/400" alt="placeholder 2" className="rounded-lg" />
-        <img src="https://via.placeholder.com/400" alt="placeholder 3" className="rounded-lg" />
-        <img src="https://via.placeholder.com/400" alt="placeholder 4" className="rounded-lg" />
-        <img src="https://via.placeholder.com/400" alt="placeholder 5" className="rounded-lg" />
-        <img src="https://via.placeholder.com/400" alt="placeholder 6" className="rounded-lg" />
+
+      <div>
+        <h3 className="text-2xl font-bold text-white mb-4">Editorial & Commercial</h3>
+        <p className="text-gray-300 mb-6">
+          Whether you need crisp product shots for an e-commerce platform or moody, atmospheric portraits for a magazine spread, our team understands light. We combine studio strobe work with natural light manipulation to create images that pop off the screen.
+        </p>
       </div>
-    </>
+
+      <div className="space-y-6">
+        <div className="flex gap-4 items-start">
+          <div className="bg-zinc-800 p-3 rounded-lg">
+            <Aperture className="text-cyan-400" size={24} />
+          </div>
+          <div>
+            <h4 className="font-bold text-white text-lg">Product Photography</h4>
+            <p className="text-gray-400 text-sm">Macro details, 360-degree spins, and creative styling.</p>
+          </div>
+        </div>
+
+        <div className="flex gap-4 items-start">
+          <div className="bg-zinc-800 p-3 rounded-lg">
+            <Sun className="text-yellow-400" size={24} />
+          </div>
+          <div>
+            <h4 className="font-bold text-white text-lg">Fashion & Lifestyle</h4>
+            <p className="text-gray-400 text-sm">On-location shoots that capture the vibe of your brand.</p>
+          </div>
+        </div>
+        
+        <div className="flex gap-4 items-start">
+          <div className="bg-zinc-800 p-3 rounded-lg">
+            <Layers className="text-pink-400" size={24} />
+          </div>
+          <div>
+            <h4 className="font-bold text-white text-lg">High-End Retouching</h4>
+            <p className="text-gray-400 text-sm">Frequency separation and color grading for flawless results.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
-
-export default PhotographyContent;

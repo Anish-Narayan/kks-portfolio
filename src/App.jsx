@@ -10,8 +10,8 @@ import Home from "./pages/Home";
 import Services from "./pages/Services";
 import Portfolio from "./pages/Portfolio";
 import Contact from "./pages/Contact";
-import TestPage from "./pages/TestPage";
 import ServicePage from "./components/ServicePage";
+import About from "./pages/About";
 
 function App() {
   return (
@@ -25,7 +25,7 @@ function App() {
             <Route path="/services/:serviceId" element={<ServicePage />} />
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/test" element={<TestPage />} />
+            <Route path="/about" element={<About />} />
           </Routes>
         </main>
         <Footer />

@@ -1,52 +1,40 @@
 import React from "react";
+import { Scissors, MonitorPlay, Music } from "lucide-react";
 
-function EditingContent({ service }) {
-  const postProductionServices = [
-    {
-      icon: "✂️",
-      title: "Creative Video Editing",
-      description: "We piece together your story, focusing on pacing, narrative flow, and emotional impact to create a final cut that resonates."
-    },
-    {
-      icon: "🎨",
-      title: "Professional Color Grading",
-      description: "Enhancing the mood and tone of your footage by meticulously adjusting color, contrast, and saturation for a cinematic look."
-    },
-    {
-      icon: "🔊",
-      title: "Sound Design & Mixing",
-      description: "From dialogue cleanup to adding immersive sound effects and music, we ensure your video sounds as good as it looks."
-    },
-    {
-      icon: "✨",
-      title: "Motion Graphics & VFX",
-      description: "Adding that extra layer of polish with animated titles, lower thirds, logo reveals, and subtle visual effects."
-    }
-  ];
-
+export default function EditingContent() {
   return (
-    <>
-      <h1 className="text-5xl font-bold mb-4">
-        <span className="mr-4">{service.icon}</span>
-        {service.title}
-      </h1>
-      <p className="text-lg leading-relaxed text-gray-300 mb-8">
-        {service.description}
-      </p>
+    <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
+      
+      <div>
+        <h3 className="text-3xl font-bold text-white mb-6">The Art of the Cut</h3>
+        <p className="text-gray-300 leading-relaxed mb-8">
+          Post-production is the final rewrite of the script. It's where we tighten the pacing, set the mood, and ensure your message lands. Our edit suites are equipped with the latest hardware to handle RAW workflows, VFX compositing, and complex sound design.
+        </p>
+      </div>
 
-      <h3 className="text-2xl font-semibold text-white mb-6">Our Post-Production Suite Includes:</h3>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {postProductionServices.map((item) => (
-          <div key={item.title} className="bg-white/5 p-6 rounded-lg">
-            <div className="text-3xl mb-3">{item.icon}</div>
-            <h4 className="font-bold text-xl mb-2">{item.title}</h4>
-            <p className="text-gray-400">{item.description}</p>
+      {/* Feature List */}
+      <div className="grid grid-cols-1 gap-4">
+        {[
+          { title: "Offline Editing", desc: "Structuring the narrative flow.", icon: <Scissors size={20} /> },
+          { title: "Color Grading (DI)", desc: "Mood enhancement using DaVinci Resolve.", icon: <MonitorPlay size={20} /> },
+          { title: "Sound Design", desc: "SFX, Foley, and final mixing.", icon: <Music size={20} /> },
+        ].map((item, i) => (
+          <div key={i} className="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/5 hover:border-cyan-500/50 transition-colors">
+            <span className="text-cyan-500">{item.icon}</span>
+            <div>
+              <h4 className="text-white font-semibold">{item.title}</h4>
+              <p className="text-gray-500 text-sm">{item.desc}</p>
+            </div>
           </div>
         ))}
       </div>
-    </>
+      
+      <div className="bg-gradient-to-r from-cyan-900/20 to-blue-900/20 p-6 rounded-2xl border border-cyan-500/20">
+        <h4 className="text-cyan-400 font-bold mb-2">Technical Delivery</h4>
+        <p className="text-sm text-gray-300">
+          We deliver in all required formats, from DCP for cinema projection to optimized codecs for Instagram and YouTube, ensuring zero loss in quality.
+        </p>
+      </div>
+    </div>
   );
 }
-
-export default EditingContent;

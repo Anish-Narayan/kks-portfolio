@@ -9,40 +9,55 @@ export const servicesData = [
     id: "filmmaking-cinematography",
     title: "Filmmaking & Cinematography",
     icon: "🎥",
-    description: "...", // Your description here
+    shortDescription: "We craft visual narratives that resonate emotionally and visually.",
+    description: "From concept to screen, we breathe life into stories. Our filmmaking approach combines Hollywood-level cinematography techniques with compelling storytelling.",
+    tags: ["Narrative Direction", "4K/8K Cinema", "Drone Aerials", "Scriptwriting"],
     component: FilmmakingContent,
-    imageUrl: "https://images.unsplash.com/photo-1578845425729-54f4b51829cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
+    // Valid: Cinema Camera Set
+    imageUrl: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&q=80&w=1925",
   },
   {
     id: "photography",
     title: "Photography",
     icon: "📸",
-    description: "...", // Your description here
+    shortDescription: "Capturing moments with editorial precision and artistic flair.",
+    description: "Frozen in time, etched in light. Our photography services go beyond simple snapshots. Whether it is high-fashion editorial or intricate product macro-photography.",
+    tags: ["Editorial & Fashion", "Product Styling", "Corporate Headshots", "Event Coverage"],
     component: PhotographyContent,
-    imageUrl: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1634&q=80",
+    // Valid: Camera Lens Close-up
+    imageUrl: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=1634",
   },
   {
     id: "editing-post-production",
     title: "Editing & Post-Production",
     icon: "🎬",
-    description: "...", // Your description here
+    shortDescription: "Where raw footage transforms into a polished masterpiece.",
+    description: "The magic happens in the edit. Our post-production suite is where narrative rhythm is found, colors are graded to perfection, and soundscapes are engineered.",
+    tags: ["Color Grading", "VFX & Motion Graphics", "Sound Design", "DCP Mastering"],
     component: EditingContent,
-    imageUrl: "https://images.unsplash.com/photo-1574717537233-5c726a454529?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
+    // UPDATED: Your specific link (resolution increased for Hero quality)
+    imageUrl: "https://images.unsplash.com/photo-1574717024239-25253f4ef40a?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=2070",
   },
   {
     id: "digital-content-creation",
     title: "Digital Content Creation",
     icon: "📲",
-    description: "...", // Your description here
+    shortDescription: "Scroll-stopping content designed for the viral age.",
+    description: "In an era of infinite scroll, we make you stop. Our digital content team specializes in short-form video (Reels/Shorts) and engaging social graphics.",
+    tags: ["Reels & Shorts", "Social Strategy", "Brand Animation", "Influencer Campaigns"],
     component: DigitalContent,
-    imageUrl: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1674&q=80",
+    // Valid: Mobile Content Creation vibe
+    imageUrl: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&q=80&w=1674",
   },
   {
     id: "studio-services-coimbatore",
     title: "Studio Services (Coimbatore)",
     icon: "🎙️",
-    description: "...", // Your description here
+    shortDescription: "A state-of-the-art creative sanctuary for artists and brands.",
+    description: "Our Coimbatore facility is a playground for creators. Equipped with acoustically treated spaces, green screens, and professional lighting grids.",
+    tags: ["Green Screen", "Acoustic Pods", "Equipment Rental", "Set Construction"],
     component: StudioContent,
-    imageUrl: "https://images.unsplash.com/photo-1603412534029-0d354d855755?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
+    // Valid: Studio Lighting Setup
+    imageUrl: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&q=80&w=2070",
   }
 ];

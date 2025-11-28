@@ -1,48 +1,36 @@
 import React from "react";
+import { Mic, Box, Zap } from "lucide-react";
 
-function StudioContent({ service }) {
-  const features = [
-    { icon: "🟩", name: "Cyclorama Green Screen" },
-    { icon: "💡", name: "Professional Lighting Grid" },
-    { icon: "🎤", name: "High-Quality Audio Gear" },
-    { icon: "🛋️", name: "Client Lounge & Changing Room" },
-    { icon: "💨", name: "Air Conditioned Space" },
-    { icon: "⚡", name: "High-Speed Wi-Fi" },
-  ];
-
+export default function StudioContent() {
   return (
-    <>
-      <h1 className="text-5xl font-bold mb-4">
-        <span className="mr-4">{service.icon}</span>
-        {service.title}
-      </h1>
-      <p className="text-lg leading-relaxed text-gray-300 mb-8">
-        {service.description}
-      </p>
-
-      <h3 className="text-2xl font-semibold text-white mb-6">Studio Features & Amenities</h3>
+    <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
       
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {features.map((feature) => (
-          <div key={feature.name} className="flex items-center gap-4 border border-white/10 p-4 rounded-lg">
-            <span className="text-2xl">{feature.icon}</span>
-            <span className="font-medium text-white">{feature.name}</span>
-          </div>
-        ))}
+      <div>
+        <h3 className="text-2xl font-bold text-white mb-4">The Creative Hub in Coimbatore</h3>
+        <p className="text-gray-300">
+          Our studio is more than just a room; it's a controlled environment designed for limitless creativity. Whether you are recording a podcast, shooting a chroma-key sequence, or building a custom set, our facility provides the professional infrastructure you need.
+        </p>
       </div>
 
-      <div className="mt-10 text-center bg-white/5 py-8 px-6 rounded-lg">
-        <h4 className="text-2xl font-bold text-white mb-2">Ready to Create?</h4>
-        <p className="text-gray-300 mb-6">Our studio is the perfect canvas for your next project. Contact us for rates and availability.</p>
-        <a 
-          href="mailto:contact@yourstudio.com" // Replace with your actual contact email
-          className="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 px-8 rounded-lg inline-block transition-colors duration-300"
-        >
-          Inquire Now
-        </a>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="bg-zinc-900/50 p-6 rounded-2xl border-l-4 border-green-500">
+          <Box className="text-green-500 mb-2" size={28} />
+          <h4 className="text-lg font-bold text-white">Green Screen / Cyclorama</h4>
+          <p className="text-sm text-gray-400 mt-2">Pre-lit infinity curves and chroma backgrounds for VFX work.</p>
+        </div>
+        
+        <div className="bg-zinc-900/50 p-6 rounded-2xl border-l-4 border-orange-500">
+          <Mic className="text-orange-500 mb-2" size={28} />
+          <h4 className="text-lg font-bold text-white">Audio Isolation</h4>
+          <p className="text-sm text-gray-400 mt-2">Acoustically treated booths for voiceovers and podcasting.</p>
+        </div>
+
+        <div className="bg-zinc-900/50 p-6 rounded-2xl border-l-4 border-cyan-500 sm:col-span-2">
+          <Zap className="text-cyan-500 mb-2" size={28} />
+          <h4 className="text-lg font-bold text-white">Lighting Grid</h4>
+          <p className="text-sm text-gray-400 mt-2">Overhead rails with Aputure and Nanlite fixtures available for rent.</p>
+        </div>
       </div>
-    </>
+    </div>
   );
 }
-
-export default StudioContent;
