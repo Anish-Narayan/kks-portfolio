@@ -71,7 +71,7 @@ function Navbar() {
         {/* --- LOGO --- */}
         <Link to="/" className="relative z-[10000] block">
           <img
-            src="/public/kks pixel white@4x1.png"
+            src="/kks pixel white@4x1.png"
             alt="Logo"
             className="h-10 w-auto hover:opacity-80 transition-opacity"
           />
