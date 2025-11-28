@@ -19,11 +19,11 @@ const socialLinks = [
 
 // --- MENU ANIMATIONS ---
 const menuVariants = {
-  closed: { 
+  closed: {
     x: "100%",
     transition: { type: "tween", ease: "easeInOut", duration: 0.4 }
   },
-  open: { 
+  open: {
     x: 0,
     transition: { type: "spring", stiffness: 100, damping: 20, staggerChildren: 0.05, delayChildren: 0.1 }
   }
@@ -62,18 +62,19 @@ function Navbar() {
         NOTE: z-[9999] ensures it is above EVERYTHING.
         If this is still hidden, check your App.js for "overflow-hidden" on the main wrapper.
       */}
-      <header 
-        className={`fixed top-0 left-0 w-full flex justify-between items-center px-6 md:px-12 py-4 z-[9999] transition-all duration-300 ${
-          scrolled || isMobileMenuOpen
-            ? "bg-[#050505]/90 backdrop-blur-md border-b border-white/10 shadow-lg py-3" 
+      <header
+        className={`fixed top-0 left-0 w-full flex justify-between items-center px-6 md:px-12 py-4 z-[9999] transition-all duration-300 ${scrolled || isMobileMenuOpen
+            ? "bg-[#050505]/90 backdrop-blur-md border-b border-white/10 shadow-lg py-3"
             : "bg-transparent py-5"
-        }`}
+          }`}
       >
         {/* --- LOGO --- */}
         <Link to="/" className="relative z-[10000] block">
-          <span className="text-white font-black text-2xl tracking-tighter hover:text-cyan-400 transition-colors">
-            KK<span className="text-cyan-500">.</span>
-          </span>
+          <img
+            src="/public/kks pixel white@4x1.png"
+            alt="Logo"
+            className="h-10 w-auto hover:opacity-80 transition-opacity"
+          />
         </Link>
 
         {/* --- DESKTOP NAV --- */}
@@ -83,11 +84,10 @@ function Navbar() {
               const isActive = location.pathname === item.link;
               return (
                 <li key={item.label}>
-                  <Link 
-                    to={item.link} 
-                    className={`text-sm font-medium tracking-wide transition-colors duration-300 relative group py-2 ${
-                      isActive ? "text-cyan-400" : "text-gray-300 hover:text-white"
-                    }`}
+                  <Link
+                    to={item.link}
+                    className={`text-sm font-medium tracking-wide transition-colors duration-300 relative group py-2 ${isActive ? "text-cyan-400" : "text-gray-300 hover:text-white"
+                      }`}
                   >
                     {item.label}
                     <span className={`absolute bottom-0 left-0 w-full h-[2px] bg-cyan-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-right group-hover:origin-left duration-300 ${isActive ? 'scale-x-100 origin-left' : ''}`}></span>
@@ -106,7 +106,7 @@ function Navbar() {
         {/* --- MOBILE TOGGLE BUTTON (Simplified) --- */}
         {/* We use a div wrapper to ensure Flexbox doesn't collapse it */}
         <div className="md:hidden relative z-[10000] flex items-center">
-          <button 
+          <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 border border-white/10 text-white active:scale-95 transition-transform"
             aria-label="Toggle Menu"
@@ -133,26 +133,25 @@ function Navbar() {
             {/* Menu Links */}
             <ul className="space-y-6 relative z-10">
               {menuItems.map((item, index) => {
-                 const isActive = location.pathname === item.link;
-                 return (
+                const isActive = location.pathname === item.link;
+                return (
                   <motion.li key={item.label} variants={itemVariants}>
-                    <Link 
-                      to={item.link} 
+                    <Link
+                      to={item.link}
                       onClick={() => setIsMobileMenuOpen(false)} // Auto-close on click
-                      className={`text-4xl font-black tracking-tight flex items-center gap-4 group ${
-                        isActive ? "text-cyan-500" : "text-white"
-                      }`}
+                      className={`text-4xl font-black tracking-tight flex items-center gap-4 group ${isActive ? "text-cyan-500" : "text-white"
+                        }`}
                     >
                       <span className="text-sm font-mono text-gray-500 group-hover:text-cyan-400 transition-colors">0{index + 1}</span>
                       {item.label}
                     </Link>
                   </motion.li>
-                 );
+                );
               })}
             </ul>
 
             {/* Footer */}
-            <motion.div 
+            <motion.div
               variants={itemVariants}
               className="mt-12 pt-8 border-t border-white/10 relative z-10"
             >
@@ -163,8 +162,8 @@ function Navbar() {
                   </a>
                 ))}
               </div>
-              <Link 
-                to="/contact" 
+              <Link
+                to="/contact"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="inline-flex items-center gap-2 text-lg text-cyan-400 font-bold"
               >
