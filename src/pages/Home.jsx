@@ -58,7 +58,7 @@ function Home() {
           <motion.h1 variants={itemVariants} className="relative">
             {/* Responsive text sizing: text-5xl on mobile -> text-9xl on desktop */}
             <span className="block text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-[0.9] text-white mb-2">
-              KKS PIXEL
+              KK's PIXEL
             </span>
             <span className="block text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-gray-400 via-gray-200 to-gray-500">
               STUDIO<span className="text-cyan-500">.</span>
