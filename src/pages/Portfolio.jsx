@@ -92,7 +92,7 @@ function Portfolio() {
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 5 }}
+                transition={{ duration: 0.5 }}
                 key={item.id}
                 className="break-inside-avoid"
               >
