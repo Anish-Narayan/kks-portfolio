@@ -7,8 +7,8 @@ import Threads from "../gsap/Threads";
 // --- ANIMATION VARIANTS ---
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
     transition: { duration: 0.8, ease: "easeOut" }
   }
@@ -27,7 +27,7 @@ const staggerContainer = {
 function About() {
   return (
     <div className="w-full min-h-screen relative bg-[#050505] text-white selection:bg-cyan-500 selection:text-black overflow-hidden">
-      
+
       {/* --- BACKGROUND LAYERS --- */}
       <div className="fixed inset-0 z-0 opacity-40 pointer-events-none">
         <Threads amplitude={1} distance={0} enableMouseInteraction={true} />
@@ -37,9 +37,9 @@ function About() {
 
       {/* --- MAIN CONTENT --- */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 py-32">
-        
+
         {/* 1. HERO SECTION */}
-        <motion.div 
+        <motion.div
           initial="hidden"
           animate="visible"
           variants={staggerContainer}
@@ -49,23 +49,22 @@ function About() {
             <span className="h-[1px] w-12 bg-cyan-500"></span>
             <span className="text-cyan-500 font-mono text-sm uppercase tracking-[0.2em]">Who We Are</span>
           </motion.div>
-          
+
           <motion.h1 variants={fadeInUp} className="text-5xl md:text-8xl font-black tracking-tighter leading-[0.9] mb-8">
             CAPTURING THE <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-500 to-white">UNSEEN.</span>
           </motion.h1>
-          
+
           <motion.p variants={fadeInUp} className="text-xl md:text-2xl text-gray-400 font-light max-w-2xl leading-relaxed">
-            We are not just photographers or filmmakers. We are visual architects obsessed with light, composition, and the raw emotion of the moment.
-          </motion.p>
+            At KK’s Pixel, we’re more than photographers and filmmakers. We create emotion through light, composition, and storytelling. Every frame we make is intentional and crafted with care. We are driven by our passion for genuine moments. We don’t just document events; we turn them into cinematic experiences that leave a lasting impression. Our mission is straightforward: we want to create visuals that inspire people, highlight stories, and shape the identity of every brand and individual we work with.          </motion.p>
         </motion.div>
 
 
         {/* 2. THE VISION (Split Layout) */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 mb-32 items-center">
-          
+
           {/* Text Content */}
-          <motion.div 
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -91,7 +90,7 @@ function About() {
           </motion.div>
 
           {/* Visual Content */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -100,16 +99,16 @@ function About() {
           >
             {/* The Image */}
             <div className="relative z-10 rounded-2xl overflow-hidden border border-white/10 shadow-2xl group">
-               <img 
-                 src="https://images.unsplash.com/photo-1554048612-387768052bf7?auto=format&fit=crop&q=80&w=2006" 
-                 alt="Photographer at work" 
-                 className="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-[1200ms]"
-               />
-               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-               <div className="absolute bottom-6 left-6">
-                  <p className="font-mono text-xs text-cyan-400">EST. 2018</p>
-                  <p className="text-white font-bold">Coimbatore, India</p>
-               </div>
+              <img
+                src="https://images.unsplash.com/photo-1554048612-387768052bf7?auto=format&fit=crop&q=80&w=2006"
+                alt="Photographer at work"
+                className="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-[1200ms]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+              <div className="absolute bottom-6 left-6">
+                <p className="font-mono text-xs text-cyan-400">EST. 2018</p>
+                <p className="text-white font-bold">Coimbatore, India</p>
+              </div>
             </div>
 
             {/* Background Decor */}
@@ -123,12 +122,12 @@ function About() {
         <div className="mb-32 border-y border-white/10 bg-white/[0.02] backdrop-blur-sm">
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10">
             {[
-              { label: "Years Active", value: "06+", icon: <Clock size={20} /> },
-              { label: "Projects Done", value: "250+", icon: <Camera size={20} /> },
-              { label: "Awards Won", value: "12", icon: <Award size={20} /> },
-              { label: "Happy Clients", value: "100%", icon: <Heart size={20} /> },
+              { label: "Years Active", value: "04+", icon: <Clock size={25} /> },
+              { label: "Projects Done", value: "100+", icon: <Camera size={25} /> },
+              { label: "Awards Won", value: "6", icon: <Award size={25} /> },
+              { label: "Happy Clients", value: "100%", icon: <Heart size={25} /> },
             ].map((stat, index) => (
-              <motion.div 
+              <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -149,7 +148,7 @@ function About() {
 
         {/* 4. VALUES / WHY US */}
         <div className="mb-32">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -160,23 +159,23 @@ function About() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { 
-                title: "Artistic Vision", 
+              {
+                title: "Artistic Vision",
                 desc: "We don't just record events; we create art. Every angle is calculated, every light source utilized.",
                 icon: <Target className="text-purple-500" size={32} />
               },
-              { 
-                title: "High-End Gear", 
+              {
+                title: "High-End Gear",
                 desc: "Utilizing industry-standard cinema cameras, drones, and lighting to ensure broadcast quality.",
                 icon: <Camera className="text-cyan-500" size={32} />
               },
-              { 
-                title: "Fast Turnaround", 
+              {
+                title: "Fast Turnaround",
                 desc: "Our post-production workflow is optimized to get your memories back to you while the excitement is fresh.",
                 icon: <Zap className="text-yellow-500" size={32} />
               },
             ].map((item, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -199,8 +198,8 @@ function About() {
         <div className="relative rounded-3xl overflow-hidden bg-zinc-900 border border-white/10 p-12 md:p-24 text-center">
           {/* Animated Gradient Background */}
           <div className="absolute inset-0 bg-gradient-to-br from-cyan-900/20 via-black to-purple-900/20 pointer-events-none"></div>
-          
-          <motion.div 
+
+          <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -210,8 +209,8 @@ function About() {
             <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
               Whether it's a commercial project or a personal milestone, let's discuss how we can bring your vision to life.
             </p>
-            <Link 
-              to="/contact" 
+            <Link
+              to="/contact"
               className="inline-flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full font-bold text-lg hover:bg-cyan-50 hover:gap-5 transition-all duration-300 group"
             >
               Start a Project

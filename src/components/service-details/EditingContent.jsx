@@ -4,12 +4,11 @@ import { Scissors, MonitorPlay, Music } from "lucide-react";
 export default function EditingContent() {
   return (
     <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
-      
+
       <div>
         <h3 className="text-3xl font-bold text-white mb-6">The Art of the Cut</h3>
         <p className="text-gray-300 leading-relaxed mb-8">
-          Post-production is the final rewrite of the script. It's where we tighten the pacing, set the mood, and ensure your message lands. Our edit suites are equipped with the latest hardware to handle RAW workflows, VFX compositing, and complex sound design.
-        </p>
+          Our Editing & Post-Production services transform raw footage and photos into polished, professional content. We specialize in video editing, reel creation, and album design, ensuring every project is visually appealing and engaging. Our team also provides color grading, motion graphics, audio enhancement, and special effects integration to enhance the overall impact. Whether it’s a wedding video, commercial, social media reel, or photo album, we focus on creativity, precision, and storytelling to deliver content that stands out.        </p>
       </div>
 
       {/* Feature List */}
@@ -28,7 +27,7 @@ export default function EditingContent() {
           </div>
         ))}
       </div>
-      
+
       <div className="bg-gradient-to-r from-cyan-900/20 to-blue-900/20 p-6 rounded-2xl border border-cyan-500/20">
         <h4 className="text-cyan-400 font-bold mb-2">Technical Delivery</h4>
         <p className="text-sm text-gray-300">

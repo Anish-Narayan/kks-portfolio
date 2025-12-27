@@ -8,7 +8,6 @@ const menuItems = [
   { label: "About", link: "/about" },
   { label: "Services", link: "/services" },
   { label: "Portfolio", link: "/portfolio" },
-  { label: "Contact", link: "/contact" },
 ];
 
 const socialLinks = [
@@ -73,7 +72,7 @@ function Navbar() {
           <img
             src="/kks pixel white@4x1.png"
             alt="Logo"
-            className="h-10 w-auto hover:opacity-80 transition-opacity"
+            className="h-15 w-auto hover:opacity-80 transition-opacity"
           />
         </Link>
 

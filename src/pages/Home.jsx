@@ -1,99 +1,82 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, MousePointer2 } from "lucide-react";
 import DarkVeil from "../gsap/DarkVeil";
 
-// --- ANIMATION VARIANTS ---
 const containerVariants = {
   hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.2, delayChildren: 0.3 },
-  },
+  visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
-  },
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } },
 };
 
 function Home() {
   return (
-    // Use h-[100dvh] for better mobile browser support (accounts for address bar)
-    <div className="w-full h-[100dvh] relative overflow-hidden bg-[#050505] text-white selection:bg-cyan-500 selection:text-black">
+    <div className="w-full h-[100dvh] relative overflow-hidden bg-[#050505] text-white">
       
-      {/* --- BACKGROUND LAYERS --- */}
+      {/* --- BACKGROUND --- */}
       <div className="absolute inset-0 z-0">
         <DarkVeil />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black" />
       </div>
-      
-      {/* Gradients & Noise */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-t from-black via-transparent to-black/40 pointer-events-none" />
-      <div className="absolute inset-0 z-0 opacity-[0.05] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
 
-      {/* --- HERO CONTENT --- */}
-      <div className="relative z-10 w-full h-full flex flex-col justify-center items-center px-4 md:px-6">
-        
+      {/* --- CONTENT --- */}
+      <div className="relative z-10 w-full h-full flex flex-col justify-center items-center px-6">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="text-center max-w-5xl mx-auto"
+          className="text-center"
         >
           {/* Tagline */}
-          <motion.div variants={itemVariants} className="flex items-center justify-center gap-3 mb-4 md:mb-6">
-            <span className="h-[1px] w-8 md:w-12 bg-cyan-500"></span>
-            <span className="text-cyan-400 font-mono text-[10px] md:text-sm uppercase tracking-[0.3em]">
-              Creative Production Studio
+          <motion.div variants={itemVariants} className="flex items-center justify-center gap-4 mb-8">
+            <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-cyan-500" />
+            <span className="text-cyan-400 font-bold uppercase tracking-[0.4em] text-[10px] md:text-xs">
+              Visionary Production
             </span>
-            <span className="h-[1px] w-8 md:w-12 bg-cyan-500"></span>
+            <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-cyan-500" />
           </motion.div>
 
           {/* Main Headline */}
-          <motion.h1 variants={itemVariants} className="relative">
-            {/* Responsive text sizing: text-5xl on mobile -> text-9xl on desktop */}
-            <span className="block text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-[0.9] text-white mb-2">
+          <motion.h1 variants={itemVariants} className="mb-6">
+            <span className="block text-6xl sm:text-8xl md:text-9xl lg:text-[11rem] font-black tracking-tighter leading-[0.8] mb-2">
               KK's PIXEL
             </span>
-            <span className="block text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-gray-400 via-gray-200 to-gray-500">
-              STUDIO<span className="text-cyan-500">.</span>
+            <span className="block text-4xl sm:text-6xl md:text-7xl font-light tracking-[0.2em] text-gray-500 uppercase">
+              Studio
             </span>
           </motion.h1>
 
           {/* Subtext */}
           <motion.p 
             variants={itemVariants} 
-            className="mt-6 md:mt-8 text-base md:text-2xl text-gray-400 font-light max-w-xs sm:max-w-2xl mx-auto leading-relaxed"
+            className="text-gray-400 text-sm md:text-lg max-w-xl mx-auto leading-relaxed font-medium mb-10"
           >
-            Crafting visuals that connect, inspire, and engage. <br className="hidden md:block" />
-            Based in Coimbatore, designed for the world.
+            A high-end creative sanctuary based in Coimbatore, <br/>
+            crafting cinematic narratives for the global stage.
           </motion.p>
 
-          {/* Buttons */}
-          <motion.div 
-            variants={itemVariants} 
-            className="mt-8 md:mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
-          >
+          {/* Action Buttons */}
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-5 justify-center items-center">
             <Link 
               to="/portfolio" 
-              className="group relative px-8 py-4 bg-white text-black font-bold rounded-full overflow-hidden w-full sm:w-auto min-w-[160px] flex items-center justify-center gap-2"
+              className="group relative px-10 py-4 bg-white text-black font-black uppercase text-xs tracking-widest rounded-full overflow-hidden transition-transform hover:scale-105 active:scale-95"
             >
               <span className="relative z-10 flex items-center gap-2">
-                View Work <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                Explore Work <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
               </span>
-              <div className="absolute inset-0 bg-cyan-100 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+              <div className="absolute inset-0 bg-cyan-400 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
             </Link>
 
             <Link 
               to="/contact" 
-              className="w-full sm:w-auto min-w-[160px] px-8 py-4 bg-white/5 backdrop-blur-md border border-white/10 text-white font-bold rounded-full hover:bg-white/10 hover:border-cyan-500/50 transition-all text-center"
+              className="px-10 py-4 bg-white/5 backdrop-blur-xl border border-white/10 text-white font-black uppercase text-xs tracking-widest rounded-full hover:bg-white hover:text-black transition-all duration-300"
             >
-              Get in Touch
+              The Brief
             </Link>
           </motion.div>
         </motion.div>

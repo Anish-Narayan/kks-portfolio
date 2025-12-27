@@ -4,13 +4,12 @@ import { Camera, Film, Mic2 } from "lucide-react";
 export default function FilmmakingContent() {
   return (
     <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
-      
+
       {/* Intro Section */}
       <div>
         <h3 className="text-2xl font-bold text-white mb-4">Visual Storytelling Reimagined</h3>
         <p className="text-gray-300 leading-relaxed">
-          We believe that every brand has a story that deserves cinematic treatment. Our filmmaking process moves beyond simple video production; we engineer emotions. By utilizing large-format cinema cameras and mastering the art of lighting, we turn standard corporate messaging into compelling visual narratives.
-        </p>
+          We offer end-to-end filmmaking services to bring your creative vision to life. From pre-production planning and storyboarding to post-production editing, SFX, VFX, and sound design, our team ensures every project is crafted with precision and cinematic quality. We also specialize in commercial and corporate ads, creating engaging videos that promote your brand effectively. Whether it’s a short film, promotional video, or music video, we focus on storytelling, visual effects, and immersive audio to deliver a professional and memorable final product.	        </p>
       </div>
 
       {/* Grid of details */}

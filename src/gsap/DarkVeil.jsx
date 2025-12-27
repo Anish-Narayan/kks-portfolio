@@ -1,64 +1,106 @@
 import React, { useRef, useMemo } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
 /**
- * The Particle Wave Logic
+ * 📸 OPTICAL TEXTURE GENERATOR
+ * Creates a "Bokeh" texture (like an out-of-focus camera lens).
+ * It has a bright center and a soft fall-off.
  */
-function Waves({ isMobile }) {
-  const points = useRef();
+function getBokehTexture() {
+  if (typeof document === 'undefined') return null;
+  const canvas = document.createElement("canvas");
+  const size = 64; 
+  canvas.width = size;
+  canvas.height = size;
+  const context = canvas.getContext("2d");
+  const center = size / 2;
 
-  // 1. Responsive Configuration
-  // Fewer particles on mobile for performance (2000 vs 6000)
-  const count = isMobile ? 2000 : 6000;
-  // Spread them wider on mobile so they don't look clumped
-  const xSpread = isMobile ? 15 : 20;
+  // Create a radial gradient mimicking a camera aperture light leak
+  const gradient = context.createRadialGradient(center, center, 0, center, center, center);
   
-  // 2. Generate Particles
-  const particlesPosition = useMemo(() => {
-    const positions = new Float32Array(count * 3);
-    for (let i = 0; i < count; i++) {
-      // X: Spread across width
-      positions[i * 3] = (Math.random() - 0.5) * xSpread; 
-      // Y: Random height (base)
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 10;
-      // Z: Depth
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 10; 
-    }
-    return positions;
-  }, [count, xSpread]);
+  // Core (Bright light source)
+  gradient.addColorStop(0, "rgba(255, 255, 255, 1)"); 
+  // Mid (Soft glow)
+  gradient.addColorStop(0.4, "rgba(200, 240, 255, 0.5)"); 
+  // Edge (Fade out)
+  gradient.addColorStop(1, "rgba(0, 0, 0, 0)"); 
 
-  // 3. Animation Loop
+  context.fillStyle = gradient;
+  context.fillRect(0, 0, size, size);
+
+  const texture = new THREE.CanvasTexture(canvas);
+  return texture;
+}
+
+/**
+ * 🎬 CINEMATIC FIELD
+ */
+function CinematicField({ isMobile }) {
+  const points = useRef();
+  const bokehTexture = useMemo(() => getBokehTexture(), []);
+
+  // Configuration: Fewer particles, but larger (for the Bokeh effect)
+  const particleCount = isMobile ? 80 : 150;
+  
+  const { positions, scales, speeds, opacities } = useMemo(() => {
+    const pos = new Float32Array(particleCount * 3);
+    const sc = new Float32Array(particleCount);
+    const sp = new Float32Array(particleCount); // Vertical speed
+    const op = new Float32Array(particleCount); // Individual opacity
+
+    for (let i = 0; i < particleCount; i++) {
+      const i3 = i * 3;
+      
+      // Position: Spread wide, but keep them mostly in front of the camera
+      pos[i3] = (Math.random() - 0.5) * 30;      // X: Wide cinematic aspect ratio
+      pos[i3 + 1] = (Math.random() - 0.5) * 20;  // Y: Height
+      pos[i3 + 2] = (Math.random() - 0.5) * 15;  // Z: Depth of field
+
+      // Scale: Varied sizes to simulate distance and lens aperture
+      sc[i] = Math.random() * 2 + 0.5; 
+      
+      // Speed: Different particles float at different speeds (parallax)
+      sp[i] = (Math.random() * 0.01) + 0.002;
+      
+      // Opacity: Some are bright highlights, some are subtle dust
+      op[i] = Math.random() * 0.5 + 0.1;
+    }
+    return { positions: pos, scales: sc, speeds: sp, opacities: op };
+  }, [particleCount]);
+
   useFrame((state) => {
-    const time = state.clock.getElapsedTime();
+    if (!points.current) return;
     
-    // Animate the wave
-    for (let i = 0; i < count; i++) {
-      const x = particlesPosition[i * 3];
+    const time = state.clock.getElapsedTime();
+    const positions = points.current.geometry.attributes.position.array;
+    
+    for (let i = 0; i < particleCount; i++) {
+      const i3 = i * 3;
       
-      // Calculate Wave Movement
-      // The Y position moves based on X position and Time
-      const y = Math.sin(x / 2 + time * 0.5) * 2 + Math.sin(x * 2 + time * 0.5) * 0.5;
+      // 1. Vertical Float (Like dust in a studio light)
+      // We move them slowly upwards
+      positions[i3 + 1] += speeds[i];
       
-      // Update Y position directly in the buffer attribute
-      // Note: We are accessing the current geometry of the ref
-      points.current.geometry.attributes.position.array[i * 3 + 1] = y;
+      // 2. Horizontal Sway (Organic movement)
+      positions[i3] += Math.sin(time * 0.5 + positions[i3 + 1]) * 0.002;
+
+      // 3. Reset when out of frame (Infinite Loop)
+      if (positions[i3 + 1] > 10) {
+        positions[i3 + 1] = -10;
+        positions[i3] = (Math.random() - 0.5) * 30; // Randomize X on reset
+      }
     }
     
-    // Tell Three.js the positions have updated
     points.current.geometry.attributes.position.needsUpdate = true;
 
-    // Mouse Interaction / Auto Rotation
-    if (isMobile) {
-      // Auto-rotate slowly on mobile
-      points.current.rotation.y = time * 0.05;
-    } else {
-      // React to mouse on desktop
-      const mouseX = state.mouse.x * 0.5;
-      const mouseY = state.mouse.y * 0.2;
-      points.current.rotation.x = THREE.MathUtils.lerp(points.current.rotation.x, mouseY, 0.1);
-      points.current.rotation.y = THREE.MathUtils.lerp(points.current.rotation.y, mouseX, 0.1);
-    }
+    // 4. Subtle Camera Move (Parallax)
+    // Simulates a heavy camera on a dolly track responding to mouse
+    const mouseX = state.mouse.x * 0.5;
+    const mouseY = state.mouse.y * 0.3;
+    
+    points.current.rotation.x = THREE.MathUtils.lerp(points.current.rotation.x, -mouseY * 0.1, 0.05);
+    points.current.rotation.y = THREE.MathUtils.lerp(points.current.rotation.y, mouseX * 0.1, 0.05);
   });
 
   return (
@@ -66,40 +108,52 @@ function Waves({ isMobile }) {
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
-          count={particlesPosition.length / 3}
-          array={particlesPosition}
+          count={particleCount}
+          array={positions}
           itemSize={3}
         />
+        {/* We use scale in the material size attenuation, but could pass as attribute too */}
       </bufferGeometry>
+      
       <pointsMaterial
-        size={isMobile ? 0.03 : 0.015} // Dots are slightly bigger on mobile for visibility
-        color="#06b6d4" // Cyan-500
-        transparent
-        opacity={0.8}
+        map={bokehTexture}
+        color="#06b6d4" // Cyan (Brand Color)
+        size={0.8} // Base size (multiplied by attenuation)
         sizeAttenuation={true}
+        transparent={true}
+        opacity={0.6}
+        alphaTest={0.01}
         depthWrite={false}
+        blending={THREE.AdditiveBlending} // Makes them glow like light sources
       />
     </points>
   );
 }
 
 /**
- * Main Exported Component
+ * 🎥 MAIN COMPONENT
  */
 export default function DarkVeil() {
-  // Simple check for mobile width (server-side safe)
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
   return (
     <div className="w-full h-full">
       <Canvas
-        camera={{ position: [0, 0, isMobile ? 12 : 8], fov: 75 }} // Camera further back on mobile
-        dpr={[1, 2]} // Optimizes pixel ratio for performance
-        gl={{ antialias: false, alpha: true }} // Disabling antialias boosts mobile FPS
+        camera={{ position: [0, 0, 12], fov: 50 }} // 50mm lens feel (Standard Cinematic)
+        dpr={[1, 2]}
+        gl={{ 
+          antialias: false, 
+          powerPreference: "high-performance",
+          alpha: true
+        }}
       >
-        {/* Fog to fade particles into the background color */}
-        <fog attach="fog" args={['#050505', 5, 20]} />
-        <Waves isMobile={isMobile} />
+        {/* 
+          Fog creates the "Atmosphere" or "Haze" found in film sets.
+          It ensures particles fade out elegantly into the darkness.
+        */}
+        <fog attach="fog" args={['#050505', 8, 25]} />
+        
+        <CinematicField isMobile={isMobile} />
       </Canvas>
     </div>
   );
