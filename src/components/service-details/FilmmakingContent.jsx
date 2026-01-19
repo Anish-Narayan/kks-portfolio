@@ -25,8 +25,7 @@ export default function FilmmakingContent() {
           <Film className="text-purple-500 mb-4" size={32} />
           <h4 className="text-xl font-bold text-white mb-2">Cinematography</h4>
           <p className="text-sm text-gray-400">
-            4K/8K acquisition using RED and ARRI systems, ensuring broadcast-quality dynamic range and color depth.
-          </p>
+            Visual storytelling driven by refined lighting, composition, and dynamic camera work.          </p>
         </div>
       </div>
 

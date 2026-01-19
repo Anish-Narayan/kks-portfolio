@@ -11,9 +11,7 @@ const menuItems = [
 ];
 
 const socialLinks = [
-  { icon: <Instagram size={20} />, href: "https://instagram.com" },
-  { icon: <Twitter size={20} />, href: "https://twitter.com" },
-  { icon: <Linkedin size={20} />, href: "https://linkedin.com" },
+  { icon: <Instagram size={20} />, href: "https://www.instagram.com/kks.pixel?igsh=MXQ2aWc5aDA5NHhycQ==" },
 ];
 
 // --- MENU ANIMATIONS ---
@@ -141,7 +139,6 @@ function Navbar() {
                       className={`text-4xl font-black tracking-tight flex items-center gap-4 group ${isActive ? "text-cyan-500" : "text-white"
                         }`}
                     >
-                      <span className="text-sm font-mono text-gray-500 group-hover:text-cyan-400 transition-colors">0{index + 1}</span>
                       {item.label}
                     </Link>
                   </motion.li>

@@ -66,7 +66,7 @@ function Contact() {
                 </div>
                 <div>
                   <h4 className="font-bold text-white">Studio Location</h4>
-                  <p className="text-gray-400">123 Creative Avenue, Coimbatore, TN</p>
+                  <p className="text-gray-400">397, Ramasamy nagar, Pangujamil Road, Ramanathapuram, Coimbatore-641045</p>
                 </div>
               </div>
               
@@ -86,15 +86,15 @@ function Contact() {
                 </div>
                 <div>
                   <h4 className="font-bold text-white">Phone</h4>
-                  <p className="text-gray-400">+91 98765 43210</p>
+                  <p className="text-gray-400">+91 99406 32121</p>
                 </div>
               </div>
             </div>
 
             {/* Social Links */}
             <div className="mt-12 flex gap-4">
-              {[<Instagram />, <Twitter />, <Linkedin />].map((icon, i) => (
-                <a key={i} href="#" className="w-12 h-12 flex items-center justify-center rounded-full border border-white/10 hover:bg-white hover:text-black transition-all duration-300">
+              {[<Instagram />].map((icon, i) => (
+                <a key={i} href="https://www.instagram.com/kks.pixel?igsh=MXQ2aWc5aDA5NHhycQ==" className="w-12 h-12 flex items-center justify-center rounded-full border border-white/10 hover:bg-white hover:text-black transition-all duration-300">
                   {icon}
                 </a>
               ))}
