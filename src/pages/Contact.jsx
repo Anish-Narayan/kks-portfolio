@@ -1,32 +1,52 @@
-import React, { useState } from "react";
+// 1. Import `memo` alongside `useState` and `React`
+import React, { useState, memo } from "react";
 import { motion } from "framer-motion";
 import { Send, MapPin, Phone, Mail, Instagram, Twitter, Linkedin, CheckCircle } from "lucide-react";
 import Threads from "../gsap/Threads";
+
+// 2. Create a memoized version of your Threads component
+const MemoizedThreads = memo(Threads);
 
 function Contact() {
   const [focused, setFocused] = useState(null);
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSent, setIsSent] = useState(false);
 
   // Handle Input Focus for floating labels
   const handleFocus = (field) => setFocused(field);
   const handleBlur = () => setFocused(null);
 
-  // Handle Form Submission (Simulated)
+  // Handle Form Submission
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!formData.name || !formData.email || !formData.message) {
+      alert("Please fill out all fields.");
+      return;
+    }
+    
     setIsSubmitting(true);
     
-    // Simulate API call
+    const phoneNumber = "919940632121";
+
+    const messageBody = `
+*New Message from* ${formData.name}
+
+*Name:* ${formData.name}
+*Email:* ${formData.email}
+
+*Message:*
+${formData.message}
+    `;
+
+    const encodedMessage = encodeURIComponent(messageBody.trim());
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+    window.open(whatsappURL, "_blank");
+
     setTimeout(() => {
       setIsSubmitting(false);
-      setIsSent(true);
       setFormData({ name: "", email: "", message: "" });
-      
-      // Reset success message after 5 seconds
-      setTimeout(() => setIsSent(false), 5000);
-    }, 2000);
+    }, 1000);
   };
 
   return (
@@ -34,7 +54,8 @@ function Contact() {
       
       {/* --- BACKGROUND LAYERS --- */}
       <div className="fixed inset-0 z-0 opacity-40 pointer-events-none">
-        <Threads amplitude={1} distance={0} enableMouseInteraction={true} />
+        {/* 3. Use the memoized component here */}
+        <MemoizedThreads amplitude={1} distance={0} enableMouseInteraction={true} />
       </div>
       <div className="fixed inset-0 z-0 bg-gradient-to-b from-transparent via-black/80 to-[#050505] pointer-events-none" />
 
@@ -76,7 +97,7 @@ function Contact() {
                 </div>
                 <div>
                   <h4 className="font-bold text-white">Email Us</h4>
-                  <p className="text-gray-400">hello@kksstudio.com</p>
+                  <p className="text-gray-400">contact@kkspixel.com</p>
                 </div>
               </div>
 
@@ -94,7 +115,7 @@ function Contact() {
             {/* Social Links */}
             <div className="mt-12 flex gap-4">
               {[<Instagram />].map((icon, i) => (
-                <a key={i} href="https://www.instagram.com/kks.pixel?igsh=MXQ2aWc5aDA5NHhycQ==" className="w-12 h-12 flex items-center justify-center rounded-full border border-white/10 hover:bg-white hover:text-black transition-all duration-300">
+                <a key={i} href="https://www.instagram.com/kks.pixel?igsh=MXQ2aWc5aDA5NHhycQ==" target="_blank" rel="noopener noreferrer" className="w-12 h-12 flex items-center justify-center rounded-full border border-white/10 hover:bg-white hover:text-black transition-all duration-300">
                   {icon}
                 </a>
               ))}
@@ -109,19 +130,7 @@ function Contact() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="bg-white/[0.03] backdrop-blur-md p-8 md:p-12 rounded-3xl border border-white/10 shadow-2xl relative overflow-hidden"
           >
-            {/* Success Overlay */}
-            {isSent && (
-              <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="absolute inset-0 z-20 bg-[#050505]/95 flex flex-col items-center justify-center text-center p-8"
-              >
-                <CheckCircle className="text-green-500 mb-4" size={64} />
-                <h3 className="text-2xl font-bold text-white mb-2">Message Sent!</h3>
-                <p className="text-gray-400">We'll be in touch with you shortly.</p>
-              </motion.div>
-            )}
-
+           
             <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
               
               {/* Name Input */}
@@ -186,14 +195,15 @@ function Contact() {
 
               {/* Submit Button */}
               <button 
+                type="submit"
                 disabled={isSubmitting}
-                className="w-full mt-4 bg-white text-black font-bold py-4 rounded-xl hover:bg-cyan-50 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                className="w-full mt-4 bg-white text-black font-bold py-4 rounded-xl hover:bg-cyan-400 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? (
-                  <span className="animate-pulse">Sending...</span>
+                  <span className="animate-pulse">Redirecting...</span>
                 ) : (
                   <>
-                    Send Message <Send size={18} />
+                    Send <Send size={18} />
                   </>
                 )}
               </button>
