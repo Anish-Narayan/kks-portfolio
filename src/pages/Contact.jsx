@@ -103,7 +103,7 @@ function Contact() {
                 <div>
                   <h4 className="font-bold text-white text-lg">LinkedIn</h4>
                   <p className="text-gray-400 underline decoration-white/10 hover:decoration-blue-400 transition-all cursor-pointer">
-                    <a href="https://www.linkedin.com/company/kks-pixel" target="_blank" rel="noreferrer">Connect on Professional Network</a>
+                    <a href="https://www.linkedin.com/company/kks-pixel" target="_blank" rel="noreferrer">KK's Pixel</a>
                   </p>
                 </div>
               </div>
@@ -130,7 +130,7 @@ function Contact() {
                 <Instagram size={20} />
               </a>
               <a 
-                href="https://linkedin.com/in/YOUR_LINKEDIN_USERNAME" 
+                href="https://www.linkedin.com/company/kks-pixel" 
                 target="_blank" 
                 rel="noreferrer"
                 className="w-12 h-12 flex items-center justify-center rounded-full border border-white/10 hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all duration-300 group"
