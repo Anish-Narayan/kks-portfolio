@@ -4,6 +4,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/react"; // 1. Added Import
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -17,6 +18,9 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen flex flex-col bg-black text-white">
+        {/* 2. Added Analytics component here */}
+        <Analytics /> 
+        
         <Navbar />
         <main className="flex-2">
           <Routes>
